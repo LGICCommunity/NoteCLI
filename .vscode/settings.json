@@ -1,5 +1,12 @@
 {
     "files.associations": {
-        "heading.h": "c"
+        "errno.h": "c",
+        "stdlib.h": "c",
+        "ctype.h": "c",
+        "time.h": "c",
+        "stat.h": "c",
+        "stdarg.h": "c",
+        "string.h": "c",
+        "utils.h": "c"
     }
 }
