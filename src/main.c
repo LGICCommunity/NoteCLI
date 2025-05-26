@@ -1,23 +1,46 @@
 #include <stdio.h>
-#include "../include/heading.h"
+#include <stdlib.h>
+#include <string.h>
+#include "../include/cli.h"
+#include "../include/file_ops.h"
+#include "../include/utils.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+    // Parse command line arguments
+    command_args_t args = parse_arguments(argc, argv);
+    
+    if (!args.valid) {
+        print_usage();
+        return EXIT_FAILURE;
+    }
 
-  
-    printf(" ____                                        _         \n");
-    printf(" |  _ \\  ___   ___ _   _ _ __ ___   ___ _ __ | |_   \n");
-    printf(" | | | |/ _ \\ / __| | | | '_ ` _ \\ / _ \\ '_ \\| __ \n");
-    printf(" | |_| | (_) | (__| |_| | | | | | |  __/ | | | |_     \n");
-    printf(" |____/_\\___/ \\___|\\__,_|_| |_| |_|\\___|_| |_|\\__\n");
-    printf("\n");
-    printf("\n");
-    printf("");
-    printf(" |  \\/  | __ _ _ __   __ _  __ _  ___ _ __            \n");
-    printf(" | |\\/| |/ _` | '_ \\ / _` |/ _` |/ _ \\ '__|         \n");
-    printf(" | |  | | (_| | | | | (_| | (_| |  __/ |               \n");
-    printf(" |_|  |_|\\__,_|_| |_|\\__,_|\\__, |\\___|_|           \n");
-    printf("                           |___/                       \n");
-       
-       
-     return 0;
-}
+    bool success = false;
+
+    // Route command to appropriate handler
+    switch (args.cmd_type) {
+        case CMD_CREATE:
+            success = create_document(args.category, args.filename);
+            break;
+            
+        case CMD_READ:
+            success = read_document(args.category, args.filename);
+            break;
+            
+        case CMD_UPDATE:
+            success = update_document(args.category, args.filename);
+            break;
+            
+        case CMD_DELETE:
+            if (confirm_action("Are you sure you want to delete this document? (y/n): ")) {
+                success = delete_document(args.category, args.filename);
+            }
+            break;
+            
+        default:
+            log_error("Unknown command");
+            print_usage();
+            return EXIT_FAILURE;
+    }
+
+    return success ? EXIT_SUCCESS : EXIT_FAILURE;
+} 
