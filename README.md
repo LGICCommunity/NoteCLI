@@ -215,6 +215,8 @@ The system provides clear error messages for:
 - Version backup failures
 - Logging failures
 
+<!--
+
 ### Tips
 
 1. Use meaningful filenames that describe the content
@@ -224,3 +226,5 @@ The system provides clear error messages for:
 5. Make sure to press Ctrl+D after entering content in interactive mode
 6. For multiline content, using echo with newlines (\n) is recommended
 7. Check both version backups and operation logs for complete document history 
+
+-->
