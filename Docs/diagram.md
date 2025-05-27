@@ -43,6 +43,11 @@ DocumentManager/
 │   ├── 📁 logs/          # Operation logs
 │   └── 📁 versions/      # Version backups
 │
+|___📁Doocs
+|    |__ 📄 Daigram.md
+|    |__ 📄 Design_Rationale.md
+|    |__ 📄 Excalidraw_Diagram.md
+|
 ├── 📄 Makefile           # Build configuration
 └── 📄 README.md          # Documentation
 ```
