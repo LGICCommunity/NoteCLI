@@ -5,10 +5,10 @@ graph TD
     B --> C{Command Processor}
     
     %% Command Types
-    C -->|Create| D[Document Creation]
-    C -->|Read| E[Document Retrieval]
-    C -->|Update| F[Document Update]
-    C -->|Delete| G[Document Deletion]
+    C -->|Create| D[Textfile Creation]
+    C -->|Read| E[Textfile Retrieval]
+    C -->|Update| F[Textfile Update]
+    C -->|Delete| G[Textfile Deletion]
     
     %% File Operations
     D --> H[File Operations]
@@ -59,9 +59,9 @@ classDef system fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
 class P,Q,R system;
 ```
 
-# Document Management System - Architecture Diagram
+# NoteCLI - Architecture Diagram
 
-This diagram illustrates the complete architecture of our Document Management System (DMS). Here's what each component represents:
+This diagram illustrates the complete architecture of our Notepad Command Line Base (NoteCLI). Here's what each component represents:
 
 ## Core Components
 - **User Input**: Entry point for all user commands
@@ -69,21 +69,21 @@ This diagram illustrates the complete architecture of our Document Management Sy
 - **Command Processor**: Routes commands to appropriate handlers
 
 ## Operations
-- **Document Creation**: Handles new document creation
-- **Document Retrieval**: Manages document reading
-- **Document Update**: Processes document modifications
-- **Document Deletion**: Manages document removal
+- **Textfile Creation**: Handles new Textfile creation
+- **Textfile Retrieval**: Manages Textfile reading
+- **Textfile Update**: Processes Textfile modifications
+- **Textfile Deletion**: Manages Textfile removal
 
 ## Storage
 - **Data Directory**: Root storage location
-  - Recipes: Storage for recipe documents
-  - Notes: Storage for note documents
+  - Recipes: Storage for recipe Textfiles
+  - Notes: Storage for note Textfiles
   - Logs: System operation logs
-  - Versions: Document version history
+  - Versions: Textfile version history
 
 ## System Features
 - **Logging System**: Tracks all system operations
-- **Version Control**: Manages document versions
+- **Version Control**: Manages Textfile versions
 - **Error Handler**: Processes and logs errors
 - **Input Validator**: Ensures data integrity
 
