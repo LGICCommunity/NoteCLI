@@ -1,3 +1,9 @@
+# For Windows users:
+# - Use MSYS2 or Git Bash for make support, or
+# - Use the following command in PowerShell/CMD:
+#   gcc -Wall -Wextra -I./include src/*.c -o bin/dms.exe
+# Or use CMake for cross-platform builds.
+
 CC = gcc
 CFLAGS = -Wall -Wextra -I./include
 LDFLAGS =
@@ -17,15 +23,8 @@ TARGET = $(BIN_DIR)/dms
 all: banner $(TARGET)
 
 banner:
-	@echo "                                                        "   
-	@echo " ███╗  ██╗ █████╗ ████████╗███████╗     █████╗ ██╗     ██╗  " 
-	@echo " ████╗ ██║██╔══██╗╚══██╔══╝██╔════╝    ██╔══██╗██║     ██║  " 
-	@echo " ██╔██╗██║██║  ██║   ██║   █████╗      ██║  ╚═╝██║     ██║  " 
-	@echo " ██║╚████║██║  ██║   ██║   ██╔══╝      ██║  ██╗██║     ██║  " 
-	@echo " ██║ ╚███║╚█████╔╝   ██║   ███████╗    ╚█████╔╝███████╗██║  " 
-	@echo " ╚═╝  ╚══╝ ╚════╝    ╚═╝   ╚══════╝     ╚════╝ ╚══════╝╚═╝  " 
-	@echo "  
-	
+	@echo "Building NoteCLI..."
+
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN_DIR)
 	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)

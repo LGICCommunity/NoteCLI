@@ -59,6 +59,34 @@ This will:
 3. Preserve the operation history in data/logs/history.txt
 4. Log the cleanup operation with timestamp
 
+## Windows Build Instructions
+
+If you are on Windows, you have several options:
+
+### 1. Using PowerShell or CMD (no Makefile required)
+
+```
+gcc -Wall -Wextra -I./include src/*.c -o bin/dms.exe
+```
+
+### 2. Using MSYS2 or Git Bash
+
+- Install MSYS2 or Git Bash
+- Use `make` as on Linux:
+
+```
+make
+```
+
+### 3. Using CMake (Recommended for cross-platform)
+
+- Install CMake and a compiler (e.g., MinGW-w64)
+- Create a `CMakeLists.txt` (not included by default)
+
+### Notes
+- The code automatically handles path separators and directory creation for Windows and Linux.
+- ANSI color output works on Windows 10+ terminals. On older Windows, color output may not display correctly.
+
 ## Usage Guide
 
 ### Basic Commands
