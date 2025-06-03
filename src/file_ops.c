@@ -3,7 +3,11 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <errno.h>
+#ifdef _WIN32
+#include <direct.h>
+#else
 #include <unistd.h>
+#endif
 #include "../include/file_ops.h"
 #include "../include/utils.h"
 
@@ -104,8 +108,8 @@ bool update_document(const char *category, const char *filename) {
 
     // Create version filename
     char version_path[1024];
-    snprintf(version_path, sizeof(version_path), "%s/%s_%s_%s", 
-             VERSIONS_DIR, category, timestamp, filename);
+    snprintf(version_path, sizeof(version_path), "%s%c%s_%s_%s", 
+             VERSIONS_DIR, PATH_SEP, category, timestamp, filename);
     free(timestamp);
 
     // First read and display existing content
@@ -223,11 +227,11 @@ bool delete_document(const char *category, const char *filename) {
 
 bool ensure_category_dir(const char *category) {
     char path[512];
-    snprintf(path, sizeof(path), "%s/%s", DATA_DIR, category);
+    snprintf(path, sizeof(path), "%s%c%s", DATA_DIR, PATH_SEP, category);
 
     struct stat st = {0};
     if (stat(path, &st) == -1) {
-        if (mkdir(path, 0755) == -1) {
+        if (MKDIR(path) == -1) {
             log_error("Failed to create directory: %s", path);
             return false;
         }
@@ -241,8 +245,7 @@ char *get_full_path(const char *category, const char *filename) {
         log_error("Memory allocation failed");
         return NULL;
     }
-
-    snprintf(filepath, 512, "%s/%s/%s", DATA_DIR, category, filename);
+    snprintf(filepath, 512, "%s%c%s%c%s", DATA_DIR, PATH_SEP, category, PATH_SEP, filename);
     return filepath;
 }
 

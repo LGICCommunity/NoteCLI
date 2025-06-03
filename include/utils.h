@@ -10,6 +10,17 @@
 #define LOGS_DIR "data/logs"
 #define HISTORY_FILE "data/logs/history.txt"
 
+// Platform-specific path separator
+#ifdef _WIN32
+#define PATH_SEP '\\'
+#include <direct.h>
+#define MKDIR(path) _mkdir(path)
+#else
+#define PATH_SEP '/'
+#include <sys/stat.h>
+#define MKDIR(path) mkdir(path, 0755)
+#endif
+
 // Operation types for logging
 typedef enum {
     OP_CREATE,

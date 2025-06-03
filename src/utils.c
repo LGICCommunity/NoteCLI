@@ -8,6 +8,8 @@
 #include <errno.h>
 #include "../include/utils.h"
 
+// Note: On Windows 10+, ANSI color codes are supported in most terminals. For older Windows, color output may not work as expected.
+
 void log_error(const char *format, ...) {
     va_list args;
     va_start(args, format);
@@ -119,7 +121,7 @@ char *get_timestamp_string(void) {
 bool ensure_versions_dir(void) {
     struct stat st = {0};
     if (stat(VERSIONS_DIR, &st) == -1) {
-        if (mkdir(VERSIONS_DIR, 0755) == -1) {
+        if (MKDIR(VERSIONS_DIR) == -1) {
             log_error("Failed to create versions directory: %s", VERSIONS_DIR);
             return false;
         }
@@ -130,7 +132,7 @@ bool ensure_versions_dir(void) {
 bool ensure_logs_dir(void) {
     struct stat st = {0};
     if (stat(LOGS_DIR, &st) == -1) {
-        if (mkdir(LOGS_DIR, 0755) == -1) {
+        if (MKDIR(LOGS_DIR) == -1) {
             log_error("Failed to create logs directory");
             return false;
         }
