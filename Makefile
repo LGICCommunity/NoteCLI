@@ -1,20 +1,33 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -I./include
-LDFLAGS =
-
+CFLAGS = -Wall -Wextra -I$(INC_DIR)
 SRC_DIR = src
+INC_DIR = include
 OBJ_DIR = obj
 BIN_DIR = bin
 DATA_DIR = data
 LOG_FILE = $(DATA_DIR)/logs/history.txt
 
+# Platform-specific settings
+ifeq ($(OS),Windows_NT)
+    TARGET = $(BIN_DIR)/NotesCLI.exe
+    RM = del /Q /F
+    MKDIR = mkdir
+    RMDIR = rmdir /Q /S
+    PATHSEP = \\
+else
+    TARGET = $(BIN_DIR)/NotesCLI
+    RM = rm -f
+    MKDIR = mkdir -p
+    RMDIR = rm -rf
+    PATHSEP = /
+endif
+
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-TARGET = $(BIN_DIR)/NotesCLI
 
 .PHONY: all clean clean-docs banner
 
-all: banner $(TARGET)
+all: banner $(BIN_DIR) $(OBJ_DIR) $(TARGET)
 
 banner:
 	@echo "                                                            "   
@@ -27,16 +40,21 @@ banner:
 	@echo "                                                            "
 	
                                                      
-$(TARGET): $(OBJS)
-	@mkdir -p $(BIN_DIR)
-	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
+$(BIN_DIR):
+	$(MKDIR) $(BIN_DIR)
+
+$(OBJ_DIR):
+	$(MKDIR) $(OBJ_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(TARGET): $(OBJS)
+	$(CC) $(OBJS) -o $(TARGET)
+
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	$(RMDIR) $(OBJ_DIR)
+	$(RMDIR) $(BIN_DIR)
 
 clean-docs:
 	@echo "WARNING: This will delete all documents (notes, recipes, and versions)."
