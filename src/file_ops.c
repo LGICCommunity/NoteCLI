@@ -249,4 +249,123 @@ char *get_full_path(const char *category, const char *filename) {
 bool file_exists(const char *path) {
     struct stat st;
     return (stat(path, &st) == 0);
+}
+
+bool create_directories(const char *path) {
+    char tmp[256];
+    char *p = NULL;
+    size_t len;
+
+    snprintf(tmp, sizeof(tmp), "%s", path);
+    len = strlen(tmp);
+    if (tmp[len - 1] == PATH_SEPARATOR[0])
+        tmp[len - 1] = 0;
+
+    for (p = tmp + 1; *p; p++) {
+        if (*p == PATH_SEPARATOR[0]) {
+            *p = 0;
+            #ifdef _WIN32
+            _mkdir(tmp);
+            #else
+            mkdir(tmp, S_IRWXU);
+            #endif
+            *p = PATH_SEPARATOR[0];
+        }
+    }
+    #ifdef _WIN32
+    return _mkdir(tmp) == 0 || errno == EEXIST;
+    #else
+    return mkdir(tmp, S_IRWXU) == 0 || errno == EEXIST;
+    #endif
+}
+
+bool ensure_directory_exists(const char *filepath) {
+    char *dir_path = get_directory_path(filepath);
+    if (!dir_path) return false;
+    
+    bool result = create_directories(dir_path);
+    free(dir_path);
+    return result;
+}
+
+char *join_path(const char *base, const char *component) {
+    size_t base_len = strlen(base);
+    size_t comp_len = strlen(component);
+    char *result = malloc(base_len + comp_len + 2); // +2 for separator and null terminator
+    
+    if (!result) return NULL;
+    
+    strcpy(result, base);
+    if (base_len > 0 && base[base_len - 1] != PATH_SEPARATOR[0]) {
+        strcat(result, PATH_SEPARATOR);
+    }
+    strcat(result, component);
+    return result;
+}
+
+char *get_directory_path(const char *filepath) {
+    char *last_separator = strrchr(filepath, PATH_SEPARATOR[0]);
+    if (!last_separator) return NULL;
+    
+    size_t dir_len = last_separator - filepath;
+    char *dir_path = malloc(dir_len + 1);
+    if (!dir_path) return NULL;
+    
+    strncpy(dir_path, filepath, dir_len);
+    dir_path[dir_len] = '\0';
+    return dir_path;
+}
+
+bool create_file(const char *filepath, const char *content) {
+    if (!ensure_directory_exists(filepath)) {
+        return false;
+    }
+
+    FILE *fp = fopen(filepath, "w");
+    if (!fp) return false;
+
+    bool success = true;
+    if (content) {
+        success = fputs(content, fp) >= 0;
+    }
+    fclose(fp);
+    return success;
+}
+
+char *read_file(const char *filepath) {
+    FILE *fp = fopen(filepath, "r");
+    if (!fp) return NULL;
+
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    rewind(fp);
+
+    char *content = malloc(size + 1);
+    if (!content) {
+        fclose(fp);
+        return NULL;
+    }
+
+    size_t read_size = fread(content, 1, size, fp);
+    fclose(fp);
+
+    if (read_size != (size_t)size) {
+        free(content);
+        return NULL;
+    }
+
+    content[size] = '\0';
+    return content;
+}
+
+bool update_file(const char *filepath, const char *content) {
+    return create_file(filepath, content);
+}
+
+bool delete_file(const char *filepath) {
+    #ifdef _WIN32
+    return _unlink(filepath) == 0;
+    #else
+    return unlink(filepath) == 0;
+    #endif
 } 

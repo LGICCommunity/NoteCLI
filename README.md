@@ -215,6 +215,93 @@ The system provides clear error messages for:
 - Version backup failures
 - Logging failures
 
+## Installation
+
+### Prerequisites
+
+#### Windows
+- MinGW-w64 or MSYS2 with gcc
+- Make utility
+- Git (optional, for cloning)
+
+#### Linux/macOS
+- GCC
+- Make
+- Git (optional, for cloning)
+
+### Building from Source
+
+1. Clone the repository:
+```bash
+git clone https://github.com/LGICCommunity/NoteCLI.git
+cd NoteCLI
+```
+
+2. Build the project:
+
+For Windows (Using MinGW):
+```bash
+mingw32-make
+```
+
+For Windows (Using MSYS2):
+```bash
+make
+```
+
+For Linux/macOS:
+```bash
+make
+```
+
+The executable will be created in the `bin` directory:
+- Windows: `bin/NoteCLI.exe`
+- Linux/macOS: `bin/NoteCLI`
+
+### Usage
+
+#### Windows
+```bash
+# Create a new note
+bin\NoteCLI.exe create notes todo.txt
+
+# Read a note
+bin\NoteCLI.exe read notes todo.txt
+
+# Update a note
+bin\NoteCLI.exe update notes todo.txt
+
+# Delete a note
+bin\NoteCLI.exe delete notes todo.txt
+```
+
+#### Linux/macOS
+```bash
+# Create a new note
+./bin/NoteCLI create notes todo.txt
+
+# Read a note
+./bin/NoteCLI read notes todo.txt
+
+# Update a note
+./bin/NoteCLI update notes todo.txt
+
+# Delete a note
+./bin/NoteCLI delete notes todo.txt
+```
+
+## Platform-Specific Notes
+
+### Windows
+- File paths use backslashes (`\`) as separators
+- Notes are stored in `data\` directory
+- Logs are stored in `data\logs\history.txt`
+
+### Linux/macOS
+- File paths use forward slashes (`/`) as separators
+- Notes are stored in `data/` directory
+- Logs are stored in `data/logs/history.txt`
+
 <!--
 
 ### Tips
