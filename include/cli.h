@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-// Command types supported by the DMS
+// Command types supported by the NotesCLI
 typedef enum {
     CMD_CREATE,
     CMD_READ,
