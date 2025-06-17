@@ -39,7 +39,7 @@ To build the project, run:
 make
 ```
 
-This will create the `dms` executable in the `bin` directory.
+This will create the `NotesCLI` executable in the `bin` directory.
 
 To clean the build files:
 
@@ -63,20 +63,20 @@ This will:
 
 ### Basic Commands
 
-The DMS supports the following commands:
+The NotesCLI supports the following commands:
 
 ```bash
 # Create a new textfile
-./bin/dms create <category> <filename>
+./bin/NotesCLI create <category> <filename>
 
 # Read a textfile
-./bin/dms read <category> <filename>
+./bin/NotesCLI read <category> <filename>
 
 # Update a textfile
-./bin/dms update <category> <filename>
+./bin/NotesCLI update <category> <filename>
 
 # Delete a textfile
-./bin/dms delete <category> <filename>
+./bin/NotesCLI delete <category> <filename>
 ```
 
 ### Available Categories
@@ -92,19 +92,19 @@ There are two ways to create textfile:
 
 a. Interactive Mode:
 ```bash
-./bin/dms create notes todo.txt
+./bin/NotesCLI create notes todo.txt
 # Then type your content and press Ctrl+D when finished
 ```
 
 b. Using Echo (for quick creation):
 ```bash
-echo "My content here" | ./bin/dms create notes quick-note.txt
+echo "My content here" | ./bin/NotesCLI create notes quick-note.txt
 ```
 
 #### 2. Reading textfile
 To read any textfile:
 ```bash
-./bin/dms read notes todo.txt
+./bin/NotesCLI read notes todo.txt
 ```
 
 #### 3. Updating textfile
@@ -112,13 +112,13 @@ When you update a textfile, the old version is automatically saved in the versio
 
 a. Interactive Mode:
 ```bash
-./bin/dms update notes todo.txt
+./bin/NotesCLI update notes todo.txt
 # Enter new content and press Ctrl+D when finished
 ```
 
 b. Using Echo:
 ```bash
-echo "Updated content" | ./bin/dms update notes todo.txt
+echo "Updated content" | ./bin/NotesCLI update notes todo.txt
 ```
 
 The old version will be saved as: `data/versions/notes_YYYYMMDD_HHMMSS_todo.txt`
@@ -126,7 +126,7 @@ The old version will be saved as: `data/versions/notes_YYYYMMDD_HHMMSS_todo.txt`
 #### 4. Deleting textfile
 To delete a textfile (will ask for confirmation):
 ```bash
-./bin/dms delete notes todo.txt
+./bin/NotesCLI delete notes todo.txt
 ```
 
 ### Operation History and Logging
@@ -166,17 +166,17 @@ cat data/logs/history.txt
 echo "Pasta Recipe:
 1. Boil water
 2. Add pasta
-3. Cook for 10 minutes" | ./bin/dms create recipes pasta.txt
+3. Cook for 10 minutes" | ./bin/NotesCLI create recipes pasta.txt
 
 # Read the recipe
-./bin/dms read recipes pasta.txt
+./bin/NotesCLI read recipes pasta.txt
 
 # Update the recipe (old version will be saved automatically)
 echo "Improved Pasta Recipe:
 1. Boil water with salt
 2. Add pasta
 3. Cook for 8-10 minutes
-4. Add olive oil" | ./bin/dms update recipes pasta.txt
+4. Add olive oil" | ./bin/NotesCLI update recipes pasta.txt
 ```
 
 2. Managing a todo list:
@@ -184,13 +184,13 @@ echo "Improved Pasta Recipe:
 # Create todo list
 echo "1. Buy groceries
 2. Call mom
-3. Study C programming" | ./bin/dms create notes todo.txt
+3. Study C programming" | ./bin/NotesCLI create notes todo.txt
 
 # Update with completed items
 echo "1. Buy groceries - DONE
 2. Call mom
 3. Study C programming
-4. Go to gym" | ./bin/dms update notes todo.txt
+4. Go to gym" | ./bin/NotesCLI update notes todo.txt
 ```
 
 ### Input Guidelines

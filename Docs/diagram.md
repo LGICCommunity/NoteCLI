@@ -1,4 +1,4 @@
-# Document Management System (DMS) - System Architecture and Workflow
+# NotesCLI - System Architecture and Workflow
 
 ## 1. System Overview Diagram
 
@@ -59,7 +59,7 @@ graph LR
     A[Source Files] --> B[Compiler]
     B --> C[Object Files]
     C --> D[Linker]
-    D --> E[DMS Executable]
+    D --> E[NotesCLI Executable]
 ```
 
 1. **Compilation Steps**:
@@ -74,7 +74,7 @@ graph LR
    gcc -c src/utils.c -o obj/utils.o
    
    # 3. Link objects
-   gcc obj/*.o -o bin/dms
+   gcc obj/*.o -o bin/NotesCLI
    ```
 
 ## 4. Code Flow Diagrams
@@ -202,22 +202,22 @@ graph TD
 
 1. **Basic Usage**:
    ```bash
-   ./bin/dms <command> <category> <filename>
+   ./bin/NotesCLI <command> <category> <filename>
    ```
 
 2. **Example Workflow**:
    ```bash
    # Create document
-   ./bin/dms create notes todo.txt
+   ./bin/NotesCLI create notes todo.txt
    
    # Read document
-   ./bin/dms read notes todo.txt
+   ./bin/NotesCLI read notes todo.txt
    
    # Update document
-   ./bin/dms update notes todo.txt
+   ./bin/NotesCLI update notes todo.txt
    
    # Delete document
-   ./bin/dms delete notes todo.txt
+   ./bin/NotesCLI delete notes todo.txt
    ```
 
 ## 8. System Components Interaction

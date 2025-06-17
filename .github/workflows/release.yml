@@ -27,8 +27,8 @@ jobs:
       - name: Archive binary
         run: |
           mkdir -p release
-          cp bin/dms release/
-          tar -czvf dms.tar.gz -C release dms
+          cp bin/NotesCLI release/
+          tar -czvf NotesCLI.tar.gz -C release NotesCLI
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -40,4 +40,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          files: dms.tar.gz
+          files: NotesCLI.tar.gz

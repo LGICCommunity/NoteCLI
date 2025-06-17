@@ -305,7 +305,7 @@ BIN_DIR = bin
 # Source and object files
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
-TARGET = $(BIN_DIR)/dms
+TARGET = $(BIN_DIR)/NotesCLI
 
 # Main targets
 .PHONY: all clean test

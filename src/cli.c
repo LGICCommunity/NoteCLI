@@ -6,7 +6,7 @@
 #include "../include/utils.h"
 
 void print_usage(void) {
-    printf("Usage: dms <command> <category> <filename>\n\n");
+    printf("Usage: NotesCLI <command> <category> <filename>\n\n");
     printf("Commands:\n");
     printf("  create <category> <filename>  - Create a new document\n");
     printf("  read   <category> <filename>  - Read an existing document\n");
