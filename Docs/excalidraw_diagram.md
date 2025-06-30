@@ -39,24 +39,6 @@ graph TD
     B --> R[Input Validator]
     R --> C
     
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style B fill:#bbf,stroke:#333,stroke-width:2px
-    style C fill:#dfd,stroke:#333,stroke-width:2px
-    style H fill:#fdd,stroke:#333,stroke-width:2px
-    style I fill:#ddf,stroke:#333,stroke-width:2px
-    style N fill:#ffd,stroke:#333,stroke-width:2px
-
-%% Additional Styling
-classDef storage fill:#e1f5fe,stroke:#01579b,stroke-width:2px;
-class J,K,L,M storage;
-
-%% Relationships
-classDef process fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px;
-class D,E,F,G process;
-
-%% System Components
-classDef system fill:#fff3e0,stroke:#ef6c00,stroke-width:2px;
-class P,Q,R system;
 ```
 
 # NoteCLI - Architecture Diagram
