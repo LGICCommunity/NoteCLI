@@ -28,11 +28,6 @@ flowchart TD
     
     H --> I[Execute Operation]
     I --> J[Log Result]
-    
-    style A fill:#bbdefb
-    style B,C fill:#c8e6c9
-    style D,E,F,G fill:#ffecb3
-    style H,I,J fill:#f8bbd0
 ```
 
 ### Command Validation Process
@@ -121,9 +116,6 @@ graph TD
         F2 --> F3[Remove File]
     end
     
-    style A fill:#bbdefb
-    style B fill:#c8e6c9
-    style C,D,E,F fill:#ffecb3
 ```
 
 ### File System Structure
@@ -147,9 +139,6 @@ graph TD
     Logs --> L1[history.txt]
     Logs --> L2[error.log]
     
-    style Root fill:#bbdefb
-    style Notes,Recipes,Versions,Logs fill:#c8e6c9
-    style N1,N2,R1,R2,V1,V2,L1,L2 fill:#ffecb3
 ```
 
 ## Version Control Implementation
@@ -195,10 +184,6 @@ graph TD
         J --> K
     end
     
-    style A fill:#bbdefb
-    style B fill:#c8e6c9
-    style C,E,F,G fill:#ffecb3
-    style H,I,J,K fill:#f8bbd0
 ```
 
 ### Version History Structure
@@ -219,9 +204,7 @@ graph LR
         D --> D2[Changes]
     end
     
-    style A fill:#bbdefb
-    style B,C,D,E fill:#c8e6c9
-    style B1,B2,C1,C2,D1,D2 fill:#ffecb3
+
 ```
 
 ## Logging System Implementation
@@ -248,10 +231,6 @@ flowchart TD
         F --> K[Add Details]
     end
     
-    style A fill:#bbdefb
-    style B fill:#c8e6c9
-    style C,D,E fill:#ffecb3
-    style F,G,H fill:#f8bbd0
 ```
 
 ### Log Entry Structure
@@ -329,10 +308,6 @@ flowchart TD
     F --> G[User Message]
     G --> H[Recovery Action]
     
-    style A fill:#ffcdd2
-    style B fill:#bbdefb
-    style C,D,E fill:#c8e6c9
-    style F,G,H fill:#ffecb3
 ```
 
 ### Error Recovery System
@@ -399,10 +374,6 @@ flowchart TD
         H --> I[Monitor Usage]
     end
     
-    style A fill:#bbdefb
-    style B,E fill:#c8e6c9
-    style C,D fill:#ffecb3
-    style F,G fill:#f8bbd0
 ```
 
 ### Memory Cleanup Process
@@ -447,9 +418,6 @@ graph TD
     D --> D2[Threads]
     D --> D3[Timers]
     
-    style A fill:#bbdefb
-    style B,C,D fill:#c8e6c9
-    style B1,B2,B3,C1,C2,C3,D1,D2,D3 fill:#ffecb3
 ```
 
 ## Implementation Tips
