@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Set up C build tools
         run: sudo apt-get update && sudo apt-get install -y build-essential
@@ -30,14 +32,33 @@ jobs:
           cp bin/NotesCLI release/
           tar -czvf NotesCLI.tar.gz -C release NotesCLI
 
-      - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          tag_name: v1.0.0  # Replace with dynamic versioning if needed
-          name: Release v1.0.0
-          body: |
-            🛠️ Built automatically using GitHub Actions
+          node-version: 'lts/*'
+
+      - name: Install semantic-release
+        run: |
+          npm install -g semantic-release
+          npm install -g @semantic-release/changelog
+          npm install -g @semantic-release/git
+
+      - name: Create Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          semantic-release --branches main \
+            --plugins "@semantic-release/commit-analyzer" \
+            "@semantic-release/release-notes-generator" \
+            "@semantic-release/changelog" \
+            "@semantic-release/github" \
+            "@semantic-release/git"
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        if: steps.semantic.outputs.new_release_published == 'true'
         with:
           files: NotesCLI.tar.gz
+          body_path: CHANGELOG.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
