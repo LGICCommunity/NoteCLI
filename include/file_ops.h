@@ -1,6 +1,3 @@
-#ifndef FILE_OPS_H
-#define FILE_OPS_H
-
 #include <stdbool.h>
 
 // Function declarations for file operations
@@ -13,5 +10,3 @@ bool delete_document(const char *category, const char *filename);
 bool ensure_category_dir(const char *category);
 char *get_full_path(const char *category, const char *filename);
 bool file_exists(const char *path);
-
-#endif // FILE_OPS_H 

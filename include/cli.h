@@ -1,6 +1,3 @@
-#ifndef CLI_H
-#define CLI_H
-
 #include <stdbool.h>
 
 // Command types supported by the NotesCLI
@@ -25,5 +22,3 @@ void print_usage(void);
 command_args_t parse_arguments(int argc, char *argv[]);
 bool validate_category(const char *category);
 bool confirm_action(const char *message);
-
-#endif // CLI_H 

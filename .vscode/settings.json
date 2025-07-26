@@ -7,6 +7,8 @@
         "stat.h": "c",
         "stdarg.h": "c",
         "string.h": "c",
-        "utils.h": "c"
+        "utils.h": "c",
+        "cli.h": "c",
+        "cstdlib": "c"
     }
 }

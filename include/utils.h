@@ -1,6 +1,3 @@
-#ifndef UTILS_H
-#define UTILS_H
-
 #include <stdbool.h>
 
 // Constants
@@ -29,5 +26,3 @@ bool ensure_versions_dir(void);
 bool ensure_logs_dir(void);
 bool log_operation(operation_type_t op_type, const char *category, const char *filename);
 const char *get_operation_name(operation_type_t op_type);
-
-#endif // UTILS_H 

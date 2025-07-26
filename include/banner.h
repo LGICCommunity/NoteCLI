@@ -1,6 +1,3 @@
-#ifndef BANNER_H
-#define BANNER_H
-
 #include <stdio.h>
 
 static inline void print_banner(void) {
@@ -18,5 +15,3 @@ static inline void print_banner(void) {
     printf("                            |___/                      \n");
     printf("\n");
 }
-
-#endif // BANNER_H 
