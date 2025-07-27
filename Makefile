@@ -1,6 +1,6 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -I./include
-LDFLAGS =
+CFLAGS = -Wall -Wextra -I./include -fPIE
+LDFLAGS = -pie
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -29,7 +29,7 @@ banner:
                                                      
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN_DIR)
-	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
+	$(CC) $(OBJS) $(LDFLAGS) -o $(TARGET)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
