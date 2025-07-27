@@ -24,5 +24,5 @@ void trim_whitespace(char *str);
 char *get_timestamp_string(void);
 bool ensure_versions_dir(void);
 bool ensure_logs_dir(void);
-bool log_operation(operation_type_t op_type, const char *category, const char *filename);
+bool log_operation(operation_type_t op_type, const char *filename);
 const char *get_operation_name(operation_type_t op_type);

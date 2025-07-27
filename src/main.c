@@ -19,20 +19,20 @@ int main(int argc, char *argv[]) {
     // Route command to appropriate handler
     switch (args.cmd_type) {
         case CMD_CREATE:
-            success = create_document(args.category, args.filename);
+            success = create_document(args.filename);
             break;
             
         case CMD_READ:
-            success = read_document(args.category, args.filename);
+            success = read_document(args.filename);
             break;
             
         case CMD_UPDATE:
-            success = update_document(args.category, args.filename);
+            success = update_document(args.filename);
             break;
             
         case CMD_DELETE:
-            if (confirm_action("Are you sure you want to delete this document? (y/n): ")) {
-                success = delete_document(args.category, args.filename);
+            if (confirm_action("Are you sure you want to delete this note? (y/n): ")) {
+                success = delete_document(args.filename);
             }
             break;
             

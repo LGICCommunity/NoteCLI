@@ -12,7 +12,6 @@ typedef enum {
 // Structure to hold parsed command arguments
 typedef struct {
     command_type_t cmd_type;
-    char category[64];
     char filename[256];
     bool valid;
 } command_args_t;
@@ -20,5 +19,4 @@ typedef struct {
 // Function declarations
 void print_usage(void);
 command_args_t parse_arguments(int argc, char *argv[]);
-bool validate_category(const char *category);
 bool confirm_action(const char *message);

@@ -148,32 +148,27 @@ const char *get_operation_name(operation_type_t op_type) {
     }
 }
 
-bool log_operation(operation_type_t op_type, const char *category, const char *filename) {
+bool log_operation(operation_type_t op_type, const char *filename) {
     // Ensure logs directory exists
     if (!ensure_logs_dir()) {
         return false;
     }
-
     // Get current timestamp
     time_t now = time(NULL);
     struct tm *t = localtime(&now);
     char timestamp[32];
     strftime(timestamp, sizeof(timestamp), "%Y-%m-%d %H:%M:%S", t);
-
     // Open history file in append mode
     FILE *history_file = fopen(HISTORY_FILE, "a");
     if (!history_file) {
         log_error("Failed to open history file");
         return false;
     }
-
-    // Write operation record
-    fprintf(history_file, "[%s] %s: %s/%s\n", 
+    // Write operation record (no category)
+    fprintf(history_file, "[%s] %s: %s\n", 
             timestamp, 
             get_operation_name(op_type),
-            category, 
             filename);
     fclose(history_file);
-
     return true;
 } 
