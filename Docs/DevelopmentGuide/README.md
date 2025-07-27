@@ -109,7 +109,6 @@ graph TD
     Include --> UtilsH[utils.h]
     
     Data --> Notes[notes/]
-    Data --> Recipes[recipes/]
     Data --> Versions[versions/]
     Data --> Logs[logs/]
     
@@ -133,7 +132,7 @@ graph TD
    mkdir -p src include data bin obj tests
    
    # Create data subdirectories
-   mkdir -p data/{notes,recipes,versions,logs}
+   mkdir -p data/{notes,versions,logs}
    ```
 
 3. **Create Initial Files**
@@ -200,8 +199,7 @@ typedef enum {
 // Command arguments structure
 typedef struct {
     command_type_t cmd_type;
-    char *category;
-    char *filename;
+    char filename[256];
     bool valid;
 } command_args_t;
 
@@ -221,10 +219,10 @@ b. **file_ops.h** - File Operations
 #include <stdbool.h>
 
 // File operation functions
-bool create_document(const char *category, const char *filename);
-bool read_document(const char *category, const char *filename);
-bool update_document(const char *category, const char *filename);
-bool delete_document(const char *category, const char *filename);
+bool create_document(const char *filename);
+bool read_document(const char *filename);
+bool update_document(const char *filename);
+bool delete_document(const char *filename);
 
 #endif // FILE_OPS_H
 ```

@@ -38,7 +38,7 @@ HOD Signature: [HOD Name]
 Department Seal
 
 ## Abstract
-NoteCLI is a command-line based notepad application written in C that provides users with a robust and efficient way to manage text documents. The system implements CRUD (Create, Read, Update, Delete) operations with additional features like automatic versioning and comprehensive operation logging. The application emphasizes data organization through categories, ensuring systematic document management while maintaining version history and operation tracking.
+NoteCLI is a command-line based notepad application written in C that provides users with a robust and efficient way to manage text documents. The system implements CRUD (Create, Read, Update, Delete) operations with additional features like automatic versioning and comprehensive operation logging. The application emphasizes data organization through a dedicated notes directory, ensuring systematic document management while maintaining version history and operation tracking.
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -58,7 +58,7 @@ NoteCLI is a command-line based notepad application written in C that provides u
 
 ## 1. Introduction
 NoteCLI is a modern solution for text document management through command-line interface. The application provides a seamless experience for users who prefer terminal-based operations, offering robust features like:
-- Category-based document organization
+- Dedicated notes directory for document organization
 - Automatic version control
 - Comprehensive operation logging
 - Error handling and validation
@@ -77,7 +77,7 @@ NoteCLI addresses these limitations by providing a structured approach to docume
 ## 3. Objectives
 1. Develop a command-line based notepad application
 2. Implement CRUD operations for text documents
-3. Create a category-based file organization system
+3. Organize all documents in a single notes directory
 4. Integrate automatic version control
 5. Implement comprehensive operation logging
 6. Ensure robust error handling and validation
@@ -260,14 +260,13 @@ graph TD
 ```
 NoteCLI/
 ├── bin/               # Compiled binary
-├── src/              # Source code files
-├── include/          # Header files
-├── data/             # Document storage
-│   ├── recipes/      # Recipe documents
-│   ├── notes/        # Note documents
-│   ├── logs/         # Operation logs
-│   └── versions/     # Version backups
-└── obj/              # Object files
+├── src/               # Source code files
+├── include/           # Header files
+├── data/              # Document storage
+│   ├── notes/         # Note documents
+│   ├── logs/          # Operation logs
+│   └── versions/      # Version backups
+└── obj/               # Object files
 ```
 
 #### Operation Procedure
@@ -279,17 +278,17 @@ make         # Build new executable
 
 2. Running Commands
 ```bash
-# Create document
-./bin/NotesCLI create <category> <filename>
+# Create note
+./bin/NotesCLI create <filename>
 
-# Read document
-./bin/NotesCLI read <category> <filename>
+# Read note
+./bin/NotesCLI read <filename>
 
-# Update document
-./bin/NotesCLI update <category> <filename>
+# Update note
+./bin/NotesCLI update <filename>
 
-# Delete document
-./bin/NotesCLI delete <category> <filename>
+# Delete note
+./bin/NotesCLI delete <filename>
 ```
 
 ## 9. Testing
@@ -347,24 +346,24 @@ make clean && make
 
 2. Create a note:
 ```bash
-./bin/NotesCLI create notes todo.txt
+./bin/NotesCLI create todo.txt
 # Enter content and press Ctrl+D
 ```
 
 3. Read the note:
 ```bash
-./bin/NotesCLI read notes todo.txt
+./bin/NotesCLI read todo.txt
 ```
 
 4. Update the note:
 ```bash
-./bin/NotesCLI update notes todo.txt
+./bin/NotesCLI update todo.txt
 # Enter new content and press Ctrl+D
 ```
 
 5. Delete the note:
 ```bash
-./bin/NotesCLI delete notes todo.txt
+./bin/NotesCLI delete todo.txt
 ```
 
 ## 11. Future Enhancements
@@ -406,18 +405,13 @@ The NoteCLI project demonstrates the effectiveness of command-line based documen
 ## 14. Annex
 ### A. Command Reference
 ```bash
-NotesCLI <command> <category> <filename>
+NotesCLI <command> <filename>
 
 Commands:
-  create  - Create a new document
-  read    - Read an existing document
-  update  - Update an existing document
-  delete  - Delete an existing document
-
-Categories:
-  recipes - For storing recipes
-  notes   - For general notes
-  logs    - For logs and records
+  create  - Create a new note
+  read    - Read an existing note
+  update  - Update an existing note
+  delete  - Delete an existing note
 ```
 
 ### B. Error Codes

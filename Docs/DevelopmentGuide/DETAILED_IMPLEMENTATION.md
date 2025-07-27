@@ -123,18 +123,14 @@ graph TD
 ```mermaid
 graph TD
     Root[/Data Directory/] --> Notes[/Notes/]
-    Root --> Recipes[/Recipes/]
     Root --> Versions[/Versions/]
     Root --> Logs[/Logs/]
     
     Notes --> N1[note1.txt]
     Notes --> N2[note2.txt]
     
-    Recipes --> R1[recipe1.txt]
-    Recipes --> R2[recipe2.txt]
-    
     Versions --> V1[note1_20240315_123456.txt]
-    Versions --> V2[recipe1_20240315_123456.txt]
+    Versions --> V2[note1_20240315_123456.txt]
     
     Logs --> L1[history.txt]
     Logs --> L2[error.log]
@@ -482,13 +478,12 @@ graph TD
 command_args_t parse_arguments(int argc, char *argv[]) {
     command_args_t args = {
         .cmd_type = CMD_INVALID,
-        .category = NULL,
         .filename = NULL,
         .valid = false
     };
 
     // Validate argument count
-    if (argc < 4) {
+    if (argc < 3) {
         return args;
     }
 
@@ -499,8 +494,7 @@ command_args_t parse_arguments(int argc, char *argv[]) {
         args.cmd_type = CMD_READ;
     } // ... other commands
 
-    args.category = argv[2];
-    args.filename = argv[3];
+    args.filename = argv[2];
     args.valid = true;
     return args;
 }
@@ -530,9 +524,9 @@ bool validate_command(command_args_t *args) {
 
 #### File Creation Example
 ```c
-bool create_document(const char *category, const char *filename) {
+bool create_document(const char *filename) {
     char filepath[MAX_PATH_LENGTH];
-    snprintf(filepath, MAX_PATH_LENGTH, "data/%s/%s", category, filename);
+    snprintf(filepath, MAX_PATH_LENGTH, "data/%s", filename);
 
     // Check if file exists
     if (file_exists(filepath)) {
@@ -560,16 +554,16 @@ bool create_document(const char *category, const char *filename) {
 
 #### File Update with Version Control
 ```c
-bool update_document(const char *category, const char *filename) {
+bool update_document(const char *filename) {
     // Create backup before update
-    if (!create_version_backup(category, filename)) {
+    if (!create_version_backup(filename)) {
         log_error("Failed to create backup");
         return false;
     }
 
     // Perform update
     char filepath[MAX_PATH_LENGTH];
-    snprintf(filepath, MAX_PATH_LENGTH, "data/%s/%s", category, filename);
+    snprintf(filepath, MAX_PATH_LENGTH, "data/%s", filename);
     
     FILE *fp = fopen(filepath, "w");
     if (!fp) {
@@ -846,18 +840,17 @@ typedef struct {
 ```c
 void test_create_document(void) {
     // Setup
-    const char *category = "test";
     const char *filename = "test_doc.txt";
     
     // Test
-    bool result = create_document(category, filename);
+    bool result = create_document(filename);
     
     // Assert
     assert(result == true);
-    assert(file_exists("data/test/test_doc.txt"));
+    assert(file_exists("data/test_doc.txt"));
     
     // Verify content
-    char *content = read_document(category, filename);
+    char *content = read_document(filename);
     assert(content != NULL);
     assert(strcmp(content, "test content") == 0);
     

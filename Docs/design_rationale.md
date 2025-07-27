@@ -33,7 +33,6 @@ src/
 ```c
 typedef struct {
     command_type_t cmd_type;
-    char category[64];
     char filename[256];
     bool valid;
 } command_args_t;
@@ -54,10 +53,9 @@ typedef struct {
 
 ```
 data/
-├── recipes/   # Category-based organization
-├── notes/
-├── logs/      # Operation history
-└── versions/  # Backup storage
+├── notes/      # Note documents
+├── logs/       # Operation history
+└── versions/   # Backup storage
 ```
 
 **Advantages:**
@@ -155,8 +153,8 @@ Input → Validation → Operation → Logging → Result
 ```c
 // On update, before modifying file:
 snprintf(version_path, sizeof(version_path), 
-         "%s/%s_%s_%s", 
-         VERSIONS_DIR, category, timestamp, filename);
+         "%s/notes_%s_%s", 
+         VERSIONS_DIR, timestamp, filename);
 ```
 
 **Benefits:**
