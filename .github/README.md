@@ -23,7 +23,6 @@ NoteCLI/
 ├── src/               # Source code files
 ├── include/           # Header files
 ├── data/              # textfile storage
-│   ├── recipes/       # Recipe textfile 
 │   ├── notes/         # Note textfile 
 │   ├── logs/          # Operation logs and history
 │   │   └── history.txt    # Complete operation history
@@ -67,21 +66,20 @@ The NotesCLI supports the following commands:
 
 ```bash
 # Create a new textfile
-./bin/NotesCLI create <category> <filename>
+./bin/NotesCLI create <filename>
 
 # Read a textfile
-./bin/NotesCLI read <category> <filename>
+./bin/NotesCLI read <filename>
 
 # Update a textfile
-./bin/NotesCLI update <category> <filename>
+./bin/NotesCLI update <filename>
 
 # Delete a textfile
-./bin/NotesCLI delete <category> <filename>
+./bin/NotesCLI delete <filename>
 ```
 
 ### Available Categories
 The system organizes textfile into these categories:
-- `recipes` - For storing cooking recipes
 - `notes` - For general notes and todos
 - `logs` - For logs and records
 
@@ -96,11 +94,6 @@ a. Interactive Mode:
 # Then type your content and press Ctrl+D when finished
 ```
 
-b. Using Echo (for quick creation):
-```bash
-echo "My content here" | ./bin/NotesCLI create notes quick-note.txt
-```
-
 #### 2. Reading textfile
 To read any textfile:
 ```bash
@@ -112,13 +105,8 @@ When you update a textfile, the old version is automatically saved in the versio
 
 a. Interactive Mode:
 ```bash
-./bin/NotesCLI update notes todo.txt
+./bin/NotesCLI update todo.txt
 # Enter new content and press Ctrl+D when finished
-```
-
-b. Using Echo:
-```bash
-echo "Updated content" | ./bin/NotesCLI update notes todo.txt
 ```
 
 The old version will be saved as: `data/versions/notes_YYYYMMDD_HHMMSS_todo.txt`
@@ -126,7 +114,7 @@ The old version will be saved as: `data/versions/notes_YYYYMMDD_HHMMSS_todo.txt`
 #### 4. Deleting textfile
 To delete a textfile (will ask for confirmation):
 ```bash
-./bin/NotesCLI delete notes todo.txt
+./bin/NotesCLI delete todo.txt
 ```
 
 ### Operation History and Logging
